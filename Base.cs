@@ -49,23 +49,30 @@ namespace NunitTest
 
         public static IEnumerable<LoginPodatci> LoginUsera()
         {
-            string putanja = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "useri.json");
+            string solutionDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
+            string putanja = Path.Combine(solutionDirectory, "useri.json");
             var citaj = File.ReadAllText(putanja);
-
             var loginPodatci = JsonSerializer.Deserialize<List<LoginPodatci>>(citaj);
-
             foreach (var korisnik in loginPodatci)
             {
                 yield return korisnik;
             }
-                
         }
-
-
         [TearDown]
         public void TearDown()
         {
-            _driver.Quit();
+            try
+            {
+                if (_driver != null)
+                {
+                    _driver.Quit();
+                    _driver.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
     }
 }
