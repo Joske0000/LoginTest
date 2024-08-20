@@ -57,9 +57,7 @@ namespace NunitTest
             {
                 yield return korisnik;
             }
-                
         }
-        
         [TearDown]
         public void TearDown()
         {
