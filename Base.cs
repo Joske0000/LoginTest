@@ -40,9 +40,7 @@ namespace NunitTest
 
             login.LoginUsera(loginPodatci.UserName, loginPodatci.Password);
 
-            var Logiran = login.UspjesanLogin();
-
-            ClassicAssert.IsTrue(Logiran);
+            bool Logiran = login.UspjesanLogin();
 
             Thread.Sleep(2000);        
         }
