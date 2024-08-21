@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System.Net;
 
 
@@ -24,7 +25,7 @@ namespace NunitTest.Stranice
 
         IWebElement Botun => driver.FindElement(By.Id("submit"));
 
-        IWebElement LoginButton => driver.FindElement(By.LinkText("Log out"));
+        IWebElement LogoutButton => driver.FindElement(By.LinkText("Log out"));
 
 
 
@@ -43,7 +44,15 @@ namespace NunitTest.Stranice
 
         public bool UspjesanLogin()
         {
-            return LoginButton.Displayed;
+            try
+            {
+                return LogoutButton.Displayed;
+            }
+            catch (NoSuchElementException)
+            {
+                Assert.Fail("Neuspjesan login, pogresno korisnicko ime ili lozinka");
+                return false;
+            }
         }
     }
 }
