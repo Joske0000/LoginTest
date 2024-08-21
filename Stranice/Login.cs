@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Net;
+using NUnit.Framework.Legacy;
+using SeleniumExtras.WaitHelpers;
 
 
 namespace NunitTest.Stranice
@@ -8,7 +10,6 @@ namespace NunitTest.Stranice
     public class Login
     {
         private readonly IWebDriver driver;
-
 
         public Login (IWebDriver driver)
         {
@@ -25,9 +26,10 @@ namespace NunitTest.Stranice
 
         IWebElement Botun => driver.FindElement(By.Id("submit"));
 
+        IWebElement GreskaMessage => driver.FindElement(By.XPath("//*[@id=\"error\"]"));
+        
         IWebElement LogoutButton => driver.FindElement(By.LinkText("Log out"));
-
-
+        
 
         public void ClickLogin()
         {
@@ -41,18 +43,42 @@ namespace NunitTest.Stranice
             Password.Posaljitekst(password);
             Botun.Submit();
         }
-
-        public bool UspjesanLogin()
+        
+        public void Provjera()
         {
+            bool LogBotun = false;
+            bool Pogreska = false;
+
             try
             {
-                return LogoutButton.Displayed;
+                LogBotun = LogoutButton.Displayed;
             }
             catch (NoSuchElementException)
             {
-                Assert.Fail("Neuspjesan login, pogresno korisnicko ime ili lozinka");
-                return false;
+                LogBotun = false;
+            }
+            try
+            {
+                Pogreska = GreskaMessage.Text.Contains("Your password is invalid!");
+            }
+            catch (NoSuchElementException)
+            {
+                Pogreska = false;
+            }
+            
+            if (LogBotun)
+            {
+                ClassicAssert.Pass("Uspješan login");
+            }
+            else if (Pogreska)
+            {
+                ClassicAssert.Pass("Neuspješan login: Pogrešna lozinka");
+            }
+            else
+            {
+                ClassicAssert.Pass("Neuspješan login: Pogrešno korisničko ime");
             }
         }
+        
     }
 }
