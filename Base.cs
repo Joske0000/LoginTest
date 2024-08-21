@@ -5,6 +5,8 @@ using System.Text.Json;
 using NUnit;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 
 namespace NunitTest
@@ -12,6 +14,7 @@ namespace NunitTest
     public class Tests
     {
         private IWebDriver _driver;
+        
 
         [SetUp]
         public void Setup()
@@ -25,6 +28,7 @@ namespace NunitTest
             _driver.Manage().Window.Maximize();
 
             _driver.Navigate().GoToUrl("https://practicetestautomation.com/");
+
         }
 
 
@@ -39,13 +43,14 @@ namespace NunitTest
             login.ClickLogin();
 
             login.LoginUsera(loginPodatci.UserName, loginPodatci.Password);
-
-            bool Logiran = login.UspjesanLogin();
-
-            Thread.Sleep(2000);        
+            
+            Thread.Sleep(1000);
+            
+            login.Provjera();
+            
         }
 
-        public static IEnumerable<LoginPodatci> LoginUsera()
+        public static IEnumerable<LoginPodatci>LoginUsera()
         {
             string solutionDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
             string putanja = Path.Combine(solutionDirectory, "useri.json");
