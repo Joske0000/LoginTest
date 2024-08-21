@@ -42,8 +42,6 @@ namespace NunitTest
 
             bool Logiran = login.UspjesanLogin();
 
-            //ClassicAssert.IsTrue(Logiran);
-
             Thread.Sleep(2000);        
         }
 
