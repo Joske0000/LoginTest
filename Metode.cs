@@ -20,7 +20,5 @@ namespace NunitTest
             lokator.Clear();
             lokator.SendKeys(text);
         }
-
-
     }
 }
