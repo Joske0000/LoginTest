@@ -1,6 +1,5 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using NunitTest.Stranice;
 using System.Text.Json;
 
 namespace NunitTest

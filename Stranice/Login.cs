@@ -2,7 +2,7 @@
 using NUnit.Framework.Legacy;
 
 
-namespace NunitTest.Stranice
+namespace NunitTest
 {
     public class Login
     {
