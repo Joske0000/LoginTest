@@ -2,7 +2,7 @@
 
 namespace NunitTest
 {
-    public static class Metode
+    public static class MetodeDriver
     {
         public static void Click(this IWebElement lokator)
         {
