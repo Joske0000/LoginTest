@@ -15,7 +15,6 @@ namespace NunitTest
     {
         private IWebDriver _driver;
         
-
         [SetUp]
         public void Setup()
         {
@@ -28,14 +27,13 @@ namespace NunitTest
             _driver.Manage().Window.Maximize();
 
             _driver.Navigate().GoToUrl("https://practicetestautomation.com/");
-
         }
 
 
         [Test]
         [TestCaseSource(nameof(LoginUsera))]
    
-        public void Test2(LoginPodatci loginPodatci)
+        public void Test(LoginPodatci loginPodatci)
         {
 
             Login login = new Login(_driver);
@@ -47,10 +45,8 @@ namespace NunitTest
             Thread.Sleep(1000);
             
             login.Provjera();
-            
         }
-
-        public static IEnumerable<LoginPodatci>LoginUsera()
+        public static IEnumerable<LoginPodatci> LoginUsera()
         {
             string solutionDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
             string putanja = Path.Combine(solutionDirectory, "useri.json");
@@ -61,6 +57,7 @@ namespace NunitTest
                 yield return korisnik;
             }
         }
+        
         [TearDown]
         public void TearDown()
         {
