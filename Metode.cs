@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 
-
 namespace NunitTest
 {
     public static class Metode

@@ -1,8 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System.Net;
 using NUnit.Framework.Legacy;
-using SeleniumExtras.WaitHelpers;
 
 
 namespace NunitTest.Stranice
