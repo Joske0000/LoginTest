@@ -45,16 +45,7 @@ namespace NunitTest
             string solutionDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
             string putanja = Path.Combine(solutionDirectory, "useri.json");
             var citaj = File.ReadAllText(putanja);
-
-            if (string.IsNullOrEmpty(citaj))
-            {
-                throw new InvalidOperationException("The content of the file is null or empty.");
-            }
             var loginPodatci = JsonSerializer.Deserialize<List<LoginPodatci>>(citaj);
-            if (loginPodatci == null)
-            {
-                throw new InvalidOperationException("Deserialization resulted in a null object.");
-            }
             foreach (var korisnik in loginPodatci)
             {
                 yield return korisnik;
