@@ -79,6 +79,5 @@ namespace NunitTest.Stranice
                 ClassicAssert.Pass("Neuspješan login: Pogrešno korisničko ime");
             }
         }
-        
     }
 }
