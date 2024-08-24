@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace NunitTest
+namespace NunitTest.Metode
 {
     public static class MetodeDriver
     {

@@ -1,5 +1,5 @@
-﻿
-namespace NunitTest
+﻿namespace NunitTest.Podatci
+
 {
     public class LoginPodatci
     {
