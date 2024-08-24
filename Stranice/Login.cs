@@ -1,8 +1,7 @@
 ﻿using OpenQA.Selenium;
-using NUnit.Framework.Legacy;
+using NunitTest.Metode;
 
-
-namespace NunitTest
+namespace NunitTest.Stranice
 {
     public class Login
     {
