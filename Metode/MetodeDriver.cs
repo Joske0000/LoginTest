@@ -4,16 +4,6 @@ namespace NunitTest
 {
     public static class MetodeDriver
     {
-        public static void Click(this IWebElement lokator)
-        {
-            lokator.Click();
-        }
-
-        public static void Submit(this IWebElement lokator)
-        {
-            lokator.Submit();
-        }
-
         public static void Posaljitekst(this IWebElement lokator, string text)
         {
             lokator.Clear();
