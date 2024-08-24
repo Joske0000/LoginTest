@@ -55,11 +55,8 @@ namespace NunitTest
         {
             try
             {
-                if (_driver != null)
-                {
                     _driver.Quit();
                     _driver.Dispose();
-                }
             }
             catch (Exception ex)
             {
