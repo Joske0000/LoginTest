@@ -21,8 +21,7 @@ namespace NunitTest
 
             _driver.Navigate().GoToUrl("https://practicetestautomation.com/");
         }
-
-
+        
         [Test]
         [TestCaseSource(nameof(LoginUsera))]
    

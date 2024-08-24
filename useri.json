@@ -1,14 +1,17 @@
 [
   {
     "UserName": "student",
-    "Password": "Password123"
+    "Password": "Password123",
+    "Registriran": "Da"
   },
   {
     "UserName": "incorrectUser",
-    "Password": "Password123"
+    "Password": "Password123",
+    "Registriran": "Ne"
   },
   {
     "UserName": "student",
-    "Password": "incorrectPassword"
+    "Password": "incorrectPassword",
+    "Registriran": "Ne"
   }
 ]
