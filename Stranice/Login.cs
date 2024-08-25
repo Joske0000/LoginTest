@@ -1,15 +1,19 @@
 ﻿using OpenQA.Selenium;
 using NunitTest.Metode;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace NunitTest.Stranice
 {
     public class Login
     {
         private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
 
         public Login (IWebDriver driver)
         {
-            this._driver = driver;
+            _driver = driver;
+            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
         }
 
         IWebElement LoginLink => _driver.FindElement(By.XPath("//*[@id=\"menu-item-20\"]/a"));
@@ -22,21 +26,26 @@ namespace NunitTest.Stranice
 
         IWebElement Botun => _driver.FindElement(By.Id("submit"));
 
-        IWebElement GreskaMessage => _driver.FindElement(By.XPath("//*[@id=\"error\"]"));
-        
+        IWebElement GreskaMessage => _driver.FindElement(By.Id("error"));
+
         IWebElement LogoutButton => _driver.FindElement(By.LinkText("Log out"));
+        
 
         public void ClickLogin()
         {
-            LoginLink.Click();
-            Test.Click();
+            _wait.Until(ExpectedConditions.ElementToBeClickable(LoginLink)).Click();
+            _wait.Until(ExpectedConditions.ElementToBeClickable(Test)).Click();
         }
         public void LoginUsera(string username, string password)
         {
+            _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("username")));
             UserName.Posaljitekst(username);
+            _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("password")));
             Password.Posaljitekst(password);
+            _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("submit")));
             Botun.Submit();
         }
+        
         public void Provjera()
         {
             bool logBotun = false;

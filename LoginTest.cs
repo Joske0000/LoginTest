@@ -1,18 +1,18 @@
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System.Text.Json;
 using NunitTest.Podatci;
 using NunitTest.Stranice;
 
 namespace NunitTest
 {
-    public class Tests: SetupDrivera
+    [Parallelizable]
+    public class Tests : SetupDrivera
     {
         [Test]
-        [TestCaseSource(nameof(LoginUseraBrowseri))]
-        public void Test(LoginPodatci loginPodatci, string browserName)
+        [TestCaseSource(nameof(LoginUsera))]
+        [Parallelizable]
+        public void TestChrome(LoginPodatci loginPodatci)
         {
-            Setup(browserName);
+            Setup("chrome");
 
             Login login = new Login(_driver);
 
@@ -20,23 +20,22 @@ namespace NunitTest
 
             login.LoginUsera(loginPodatci.UserName, loginPodatci.Password);
 
-            Thread.Sleep(1000);
-
-            login.Provjera();
+            login.Provjera(); 
         }
-
-        public static IEnumerable<object[]> LoginUseraBrowseri()
+        [Test]
+        [TestCaseSource(nameof(LoginUsera))]
+        [Parallelizable]
+        public void TestFirefox(LoginPodatci loginPodatci)
         {
-            var loginUsera = LoginUsera().ToList();
-            var browseri = Browseri().ToList();
+            Setup("firefox");
 
-            foreach (var korisnik in loginUsera)
-            {
-                foreach (var browser in browseri)
-                {
-                    yield return new object[] { korisnik, browser };
-                }
-            }
+            Login login = new Login(_driver);
+
+            login.ClickLogin();
+
+            login.LoginUsera(loginPodatci.UserName, loginPodatci.Password);
+
+            login.Provjera(); 
         }
 
         public static IEnumerable<LoginPodatci> LoginUsera()
@@ -48,15 +47,6 @@ namespace NunitTest
             foreach (var korisnik in loginPodatci)
             {
                 yield return korisnik;
-            }
-        }
-
-        public static IEnumerable<string> Browseri()
-        {
-            string[] browseri = { "chrome", "firefox" };
-            foreach (var B in browseri)
-            {
-                yield return B;
             }
         }
     }
