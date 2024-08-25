@@ -9,7 +9,6 @@ namespace NunitTest
     {
         [Test]
         [TestCaseSource(nameof(LoginUsera))]
-        [Parallelizable]
         public void TestChrome(LoginPodatci loginPodatci)
         {
             Setup("chrome");
@@ -24,7 +23,6 @@ namespace NunitTest
         }
         [Test]
         [TestCaseSource(nameof(LoginUsera))]
-        [Parallelizable]
         public void TestFirefox(LoginPodatci loginPodatci)
         {
             Setup("firefox");
