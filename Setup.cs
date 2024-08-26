@@ -25,6 +25,7 @@ public void Setup(string browserName)
         {
             FirefoxOptions options = new FirefoxOptions();
             options.AddArgument("--disable-search-engine-choice-screen");
+            options.AddArgument("--headless");
             _driver = new FirefoxDriver(options);
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl("https://practicetestautomation.com/");
