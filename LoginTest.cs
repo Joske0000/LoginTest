@@ -42,10 +42,20 @@ namespace NunitTest
             string putanja = Path.Combine(solutionDirectory, "useri.json");
             var citaj = File.ReadAllText(putanja);
             var loginPodatci = JsonSerializer.Deserialize<List<LoginPodatci>>(citaj);
+
+            if (loginPodatci == null)
+            {
+                yield break;
+            }
+
             foreach (var korisnik in loginPodatci)
             {
-                yield return korisnik;
+                if (korisnik.UserName != null && korisnik.Password != null)
+                {
+                    yield return korisnik;
+                }
             }
         }
+            
+        }
     }
-}
