@@ -4,7 +4,6 @@ using NunitTest.Stranice;
 
 namespace NunitTest
 {
-    [Parallelizable]
     public class Tests : SetupDrivera
     {
         [Test]
