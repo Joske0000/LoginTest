@@ -47,11 +47,11 @@ namespace NunitTest
                 yield break;
             }
 
-            foreach (var korisnik in loginData)
+            foreach (var x in loginData)
             {
-                if (korisnik.UserName != null && korisnik.Password != null)
+                if (x.UserName != null && x.Password != null)
                 {
-                    yield return korisnik;
+                    yield return x;
                 }
             }
         }
