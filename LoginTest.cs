@@ -38,7 +38,7 @@ namespace NunitTest
         public static IEnumerable<LoginData> LoginUser()
         {
             string solutionDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
-            string path = Path.Combine(solutionDirectory, "useri.json");
+            string path = Path.Combine(solutionDirectory, "users.json");
             var read = File.ReadAllText(path);
             var loginData = JsonSerializer.Deserialize<List<LoginData>>(read);
 
