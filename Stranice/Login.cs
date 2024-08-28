@@ -70,15 +70,15 @@ namespace NunitTest.Stranice
             
             if (logButton)
             {
-                Assert.Pass("Uspješan login");
+                Assert.Pass("Successful login");
             }
             else if (Error)
             {
-                Assert.Pass("Neuspješan login: Pogrešna lozinka");
+                Assert.Pass("Unsuccessful login: wrong password");
             }
             else
             {
-                Assert.Pass("Neuspješan login: Pogrešno korisničko ime");
+                Assert.Pass("Unsuccessful login: wrong user name");
             }
         }
     }
