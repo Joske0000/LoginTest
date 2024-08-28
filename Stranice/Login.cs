@@ -24,9 +24,9 @@ namespace NunitTest.Stranice
 
         IWebElement Password => _driver.FindElement(By.Id("password"));
 
-        IWebElement Botun => _driver.FindElement(By.Id("submit"));
+        IWebElement Button => _driver.FindElement(By.Id("submit"));
 
-        IWebElement GreskaMessage => _driver.FindElement(By.Id("error"));
+        IWebElement ErrorMessage => _driver.FindElement(By.Id("error"));
 
         IWebElement LogoutButton => _driver.FindElement(By.LinkText("Log out"));
         
@@ -36,43 +36,43 @@ namespace NunitTest.Stranice
             _wait.Until(ExpectedConditions.ElementToBeClickable(LoginLink)).Click();
             _wait.Until(ExpectedConditions.ElementToBeClickable(Test)).Click();
         }
-        public void LoginUsera(string username, string password)
+        public void UserLogin(string username, string password)
         {
             _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("username")));
-            UserName.Posaljitekst(username);
+            UserName.SendText(username);
             _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("password")));
-            Password.Posaljitekst(password);
+            Password.SendText(password);
             _wait.Until(ExpectedConditions.ElementIsVisible(By.Id("submit")));
-            Botun.Submit();
+            Button.Submit();
         }
         
-        public void Provjera()
+        public void LoginCheck()
         {
-            bool logBotun = false;
-            bool pogreska = false;
+            bool logButton = false;
+            bool Error = false;
 
             try
             {
-                logBotun = LogoutButton.Displayed;
+                logButton = LogoutButton.Displayed;
             }
             catch (NoSuchElementException)
             {
-                logBotun = false;
+                logButton = false;
             }
             try
             {
-                pogreska = GreskaMessage.Text.Contains("Your password is invalid!");
+                Error = ErrorMessage.Text.Contains("Your password is invalid!");
             }
             catch (NoSuchElementException)
             {
-                pogreska = false;
+                Error = false;
             }
             
-            if (logBotun)
+            if (logButton)
             {
                 Assert.Pass("Uspješan login");
             }
-            else if (pogreska)
+            else if (Error)
             {
                 Assert.Pass("Neuspješan login: Pogrešna lozinka");
             }

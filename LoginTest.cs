@@ -4,11 +4,11 @@ using NunitTest.Stranice;
 
 namespace NunitTest
 {
-    public class Tests : SetupDrivera
+    public class Tests : SetupDriver
     {
         [Test]
-        [TestCaseSource(nameof(LoginUsera))]
-        public void TestChrome(LoginPodatci loginPodatci)
+        [TestCaseSource(nameof(LoginUser))]
+        public void TestChrome(LoginData loginData)
         {
             Setup("chrome");
 
@@ -16,13 +16,13 @@ namespace NunitTest
 
             login.ClickLogin();
 
-            login.LoginUsera(loginPodatci.UserName, loginPodatci.Password);
+            login.UserLogin(loginData.UserName, loginData.Password);
 
-            login.Provjera(); 
+            login.LoginCheck(); 
         }
         [Test]
-        [TestCaseSource(nameof(LoginUsera))]
-        public void TestFirefox(LoginPodatci loginPodatci)
+        [TestCaseSource(nameof(LoginUser))]
+        public void TestFirefox(LoginData loginData)
         {
             Setup("firefox");
 
@@ -30,24 +30,24 @@ namespace NunitTest
 
             login.ClickLogin();
 
-            login.LoginUsera(loginPodatci.UserName, loginPodatci.Password);
+            login.UserLogin(loginData.UserName, loginData.Password);
 
-            login.Provjera(); 
+            login.LoginCheck(); 
         }
 
-        public static IEnumerable<LoginPodatci> LoginUsera()
+        public static IEnumerable<LoginData> LoginUser()
         {
             string solutionDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
-            string putanja = Path.Combine(solutionDirectory, "useri.json");
-            var citaj = File.ReadAllText(putanja);
-            var loginPodatci = JsonSerializer.Deserialize<List<LoginPodatci>>(citaj);
+            string path = Path.Combine(solutionDirectory, "useri.json");
+            var read = File.ReadAllText(path);
+            var loginData = JsonSerializer.Deserialize<List<LoginData>>(read);
 
-            if (loginPodatci == null)
+            if (loginData == null)
             {
                 yield break;
             }
 
-            foreach (var korisnik in loginPodatci)
+            foreach (var korisnik in loginData)
             {
                 if (korisnik.UserName != null && korisnik.Password != null)
                 {
