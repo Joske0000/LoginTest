@@ -1,13 +1,10 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 
 namespace NunitTest;
 
-public class SetupDrivera    
+public class SetupDriver   
 {
 public IWebDriver _driver;
 

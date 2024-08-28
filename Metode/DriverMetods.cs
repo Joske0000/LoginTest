@@ -2,9 +2,9 @@
 
 namespace NunitTest.Metode
 {
-    public static class MetodeDriver
+    public static class DriverMetods
     {
-        public static void Posaljitekst(this IWebElement lokator, string text)
+        public static void SendText(this IWebElement lokator, string text)
         {
             lokator.Clear();
             lokator.SendKeys(text);
